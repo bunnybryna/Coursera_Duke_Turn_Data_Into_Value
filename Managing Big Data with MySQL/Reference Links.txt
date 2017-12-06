@@ -1,0 +1,9 @@
+MySQL Variable Types
+http://support.hostgator.com/articles/specialized-help/technical/phpmyadmin/mysql-variable-types
+
+Function and Operator Reference
+https://dev.mysql.com/doc/refman/5.7/en/func-op-summary-ref.html
+https://www.w3resource.com/mysql/mysql-functions-and-operators.php
+
+data time function
+http://www.tutorialspoint.com/mysql/mysql-date-time-functions.htm
