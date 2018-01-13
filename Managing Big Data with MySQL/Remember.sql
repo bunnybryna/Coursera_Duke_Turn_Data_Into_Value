@@ -47,3 +47,34 @@ ORDER BY breed_fixed
 SELECT DISTINCT breed, TRIM(LEADING '-' FROM breed) AS breed_fixed
 FROM dogs
 ORDER BY breed_fixed
+
+--How would you query how much time it took to complete each test provided in the exam_answers table, in minutes? 
+--Title the column that represents this data "Duration." 
+%%sql
+SELECT TIMESTAMPDIFF(minute, start_time, end_time) AS Duration
+FROM exam_answers
+LIMIT 200
+
+--difference between these two queries
+%%sql
+SELECT test_name, MONTH(created_at) AS Month, COUNT(created_at) AS Num_Completed_Tests
+FROM complete_tests
+GROUP BY MONTH(created_at), test_name
+
+%%sql
+SELECT test_name, MONTH(created_at) AS Month, COUNT(created_at) AS Num_Completed_Tests
+FROM complete_tests
+GROUP BY test_name, MONTH(created_at)
+
+--Question 4: Write a query that outputs the average number of tests completed and average mean inter-test-interval for every breed type, sorted by the average number of completed tests in descending order (popular hybrid should be the first row in your output).
+%%sql
+SELECT breed_type, AVG(total_tests_completed) AS AvgTotal, AVG(mean_iti_minutes) AS AvgMeanITI
+FROM dogs
+GROUP BY breed_type
+ORDER BY AVG(total_tests_completed) DESC;
+
+--"every non-aggregated field that is listed in the SELECT list must be listed in the GROUP BY list"
+-- the query below is wrong
+SELECT breed_type, COUNT(DISTINCT dog_guid) AS NumDogs, weight
+FROM dogs
+GROUP BY breed_type;
